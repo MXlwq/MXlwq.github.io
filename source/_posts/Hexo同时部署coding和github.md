@@ -1,5 +1,10 @@
 ---
 title: Hexo同时部署coding和github
+date: 2018-02-30 10:01:33
+tags:
+- Hexo
+categories:
+- Hexo
 ---
 
 # 阿里云解析配置
