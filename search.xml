@@ -73,17 +73,6 @@
     <content type="text"><![CDATA[Ubuntu 配置nodejs环境 使用sudo apt-get install nodejs 直接安装的nodejs版本是4.×版本，和Hexo搭建过程中需要的版本不兼容。可以参考上述地址使用安装npn去更新。]]></content>
   </entry>
   <entry>
-    <title><![CDATA[23种设计模式备忘和理解——1.分类]]></title>
-    <url>%2F2018%2F03%2F09%2F23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%A4%87%E5%BF%98%E5%92%8C%E7%90%86%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[设计模式分类创建型-5种 单例模式 建造者模式 原型模式 工厂方法模式 抽象工厂模式结构型-7种 适配器模式 装饰者模式 结合模式 桥接模式 外观模式 享元模式 代理模式行为型-11种 策略模式 观察者模式 迭代器模式 命令模式模式 备忘录模式 中介者模式 解释器模式 访问者模式 责任链模式 状态模式 模板方法模式]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Android EditText 通过TextWatcher实现自动补全的注意点]]></title>
     <url>%2F2018%2F03%2F09%2FAndroid-EditText-%E9%80%9A%E8%BF%87TextWatcher%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9%2F</url>
     <content type="text"><![CDATA[Android EditText 通过TextWatcher实现自动补全的注意点CSDN文章对应地址 背景需求想要实现输入框在用户输入了一定文本的情况下 自动填充一个可能用户想要的结果，类似Chrome手机版的搜索框 实现12345678910111213141516171819202122private class MyWatcher implements TextWatcher &#123; public void afterTextChanged(Editable s) &#123; Log.d(TAG, &quot;doAfterTextChanged..&quot;); if (一些可能防止自动补全的情况) &#123; return; &#125; //为了防止快速输入的情况下重复调用，加一个延时 mHandler.removeMessages(MSG_AUTO_COMPLETE); mHandler.sendEmptyMessageDelayed(MSG_AUTO_COMPLETE, DELAY_AUTO_COMPLETE); &#125; public void beforeTextChanged(CharSequence s, int start, int count, int after) &#123; &#125; public void onTextChanged(CharSequence s, int start, int before, int count) &#123; //这里可以设置一些标志位，用于防止自动补全，比如这里的识别用户按了删除按键，通过count==0来判断 mLastUrlEditWasDelete = (count == 0); &#125; &#125; 上面一些可能防止自动补全的情况有很多，一般有： 用户点了删除键； 正在处于上一次自动补全的过程中； 存在的兼容性问题功能上线之后，发现国外的用户自动补全后点了删除，会再次自动补全，导致输入框无法删除，这个是很严重的bug，但是在测试和开发的过程中都没有发现，后来发现国外的用户用的是Gboard输入法，默认有一个文本输入建议，而开发和测试都用的国内的输入法，比如讯飞和搜狗等等。这里就出现了输入法的兼容问题，使用不同的输入法，点击删除时回调的TextWatcher的次数不同，在网上找了很多解决方案，最多的就是说让给EditText设置一个输入类型，也就是inputType为textNoSuggestions，还有说用textVisiblePassword的，但是前者textNoSuggestions测试无用，无法控制Gboard不显示输入建议，后者textVisiblePassword会导致只能输入数字和英文，但是海外的用户并不都是输入英文的。所以这些都不是真正的解决方案 或者说不适用于目前的情况。 解决方案在是否自动补全的地方下功夫，判断处于输入法的建议补全的时候就不自动补全123456private boolean shouldAutoComplete() &#123; Editable text = getText(); return !isHandlingBatchInput() &amp;&amp; BaseInputConnection.getComposingSpanEnd(text) == BaseInputConnection.getComposingSpanStart(text);&#125; 缺憾，这样的话，只有用户点击了输入法内的搜索建议的词，输入内容才会出现在EditText中，但是此时不会执行自动补全操作，我的解决方案是使用自定义的InputConnectionWrapper重写EditText的onCreateInputConnection方法， 123456789101112@Overridepublic InputConnection onCreateInputConnection(EditorInfo outAttrs) &#123; mInputConnectionWrapper.setTarget(super.onCreateInputConnection(outAttrs)); return InputConnectionWrapper;&#125;InputConnectionWrapper mInputConnectionWrapper = new InputConnectionWrapper(null, true) &#123; @Override public boolean finishComposingText() &#123; autoComplete(mLastSuggestion); return super.finishComposingText(); &#125;&#125;; 在finishComposingText的时候调用一次自己写的autoComplete方法。 Have Fun~]]></content>
@@ -93,6 +82,17 @@
       <tags>
         <tag>Android</tag>
         <tag>TextWatcher</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[23种设计模式备忘和理解——1.分类]]></title>
+    <url>%2F2018%2F03%2F09%2F23%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%A4%87%E5%BF%98%E5%92%8C%E7%90%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[设计模式分类创建型-5种 单例模式 建造者模式 原型模式 工厂方法模式 抽象工厂模式结构型-7种 适配器模式 装饰者模式 结合模式 桥接模式 外观模式 享元模式 代理模式行为型-11种 策略模式 观察者模式 迭代器模式 命令模式模式 备忘录模式 中介者模式 解释器模式 访问者模式 责任链模式 状态模式 模板方法模式]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -132,6 +132,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[18.02总结]]></title>
+    <url>%2F2018%2F03%2F02%2F18.02%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[五件事 被取整的年终奖 没有中奖的年会 大年初四回北京的春节 晚上搬家&amp;一天收拾&amp;三指受伤 掉公交卡&amp;引发的一系列事情 只说重点 被取整的年终奖当初犹豫了两周没有来公司，导致年终奖计算工作时间不足0.2，按照0.1计算了，不过自己现在对目前的工作很满意。 没有中奖的年会年会场地不够大，抽签决定能不能去，全小组只有我一个人没有抽中，到了年会那一天也没中任何奖，运气不守恒啊。 大年初四回北京的春节腊月28下午回家，到了郑州直接坐了地铁去了医院，母亲病了，年后两个姐姐都不在家，舅舅家也因为表哥结婚准备东西，很早就走了，今年的年过的格外冷清。 晚上搬家&amp;一天收拾&amp;三指受伤大晚上没吃饭，买了几个包子，吃完，想着不能拖延，就大晚上搬了家，上下楼5层，中间感觉要累死，身体不行，要加强锻炼。 掉公交卡&amp;引发的一系列事情去总参，坐在座位上，走的时候公交卡掉了出来，第二天睡了个懒觉，上班的时候才发现公交卡没了，回家找也没找到，感觉落到了总参座位，先去了附近的地铁站，想着买张新卡，结果那个地铁站不卖，又跑回公交站坐公交，上车以为有售票员，结果没有售票员，就交了一张整钱，没有找零，最终在其他地铁站下车了，买了张新卡，到公司迟到，也没吃上早饭。]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo同时部署coding和github]]></title>
     <url>%2F2018%2F03%2F02%2FHexo%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2coding%E5%92%8Cgithub%2F</url>
     <content type="text"><![CDATA[阿里云解析配置 ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址和国外github服务器地址 将这两个ip添加为A记录，主机记录为www，记录值填写ping出来的地址，将coding的ip设置为默认的，将github的ip设置为【世界】 添加两个CNAME记录类型，主机类型为@，解析路线×××.coding.me 【截图待补充】]]></content>
@@ -141,13 +149,5 @@
       <tags>
         <tag>Hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[18.02总结]]></title>
-    <url>%2F2018%2F03%2F02%2F18.02%E6%80%BB%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[五件事 被取整的年终奖 没有中奖的年会 大年初四回北京的春节 晚上搬家&amp;一天收拾&amp;三指受伤 掉公交卡&amp;引发的一系列事情 只说重点 被取整的年终奖当初犹豫了两周没有来公司，导致年终奖计算工作时间不足0.2，按照0.1计算了，不过自己现在对目前的工作很满意。 没有中奖的年会年会场地不够大，抽签决定能不能去，全小组只有我一个人没有抽中，到了年会那一天也没中任何奖，运气不守恒啊。 大年初四回北京的春节腊月28下午回家，到了郑州直接坐了地铁去了医院，母亲病了，年后两个姐姐都不在家，舅舅家也因为表哥结婚准备东西，很早就走了，今年的年过的格外冷清。 晚上搬家&amp;一天收拾&amp;三指受伤大晚上没吃饭，买了几个包子，吃完，想着不能拖延，就大晚上搬了家，上下楼5层，中间感觉要累死，身体不行，要加强锻炼。 掉公交卡&amp;引发的一系列事情去总参，坐在座位上，走的时候公交卡掉了出来，第二天睡了个懒觉，上班的时候才发现公交卡没了，回家找也没找到，感觉落到了总参座位，先去了附近的地铁站，想着买张新卡，结果那个地铁站不卖，又跑回公交站坐公交，上车以为有售票员，结果没有售票员，就交了一张整钱，没有找零，最终在其他地铁站下车了，买了张新卡，到公司迟到，也没吃上早饭。]]></content>
-      <categories>
-        <category>总结</category>
-      </categories>
   </entry>
 </search>
