@@ -50,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -91,9 +87,9 @@
     scheme: 'Mist',
     version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    fastclick: ,
-    lazyload: ,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -228,28 +224,32 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">首页</a>
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">分类</a>
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">归档</a>
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">关于</a>
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
   </li>
 
       
@@ -258,7 +258,8 @@
           
             <a href="javascript:;" class="popup-trigger">
           
-            搜索</a>
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Suche</a>
         </li>
       
     </ul>
@@ -282,7 +283,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -333,7 +334,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/05/30/Android开发者重装Ubuntu需要做的几件事/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -365,16 +366,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-05-30 10:01:33" itemprop="dateCreated datePublished" datetime="2018-05-30T10:01:33+08:00">2018-05-30</time>
+              <time title="Post created: 2018-05-30 10:01:33" itemprop="dateCreated datePublished" datetime="2018-05-30T10:01:33+08:00">2018-05-30</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -387,7 +404,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
@@ -417,6 +434,14 @@
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
           
 
           
@@ -553,10 +578,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Übersicht
           </li>
         </ul>
       
@@ -565,10 +590,81 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-author-name" itemprop="name">Wenquan</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
           
 
           
@@ -633,11 +729,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">博主</span>
+  <span class="author" itemprop="copyrightHolder">Wenquan</span>
 
   
 
@@ -647,13 +743,15 @@
 
 
 
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
 
 
 
-  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></p></div>
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></div>
 
 
         
@@ -661,7 +759,17 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
 
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
   
 </div>
 
@@ -710,8 +818,6 @@
 
 
 
-  
-
 
 
 
@@ -739,11 +845,6 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
 
@@ -775,7 +876,7 @@
   
 
   
-    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    <script id="dsq-count-scr" src="https://mxlwq.disqus.com/count.js" async></script>
   
 
   
@@ -787,7 +888,7 @@
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
+        s.src = 'https://mxlwq.disqus.com/embed.js';
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
       }
@@ -798,10 +899,6 @@
   
 
 
-
-
-
-  
 
 
 

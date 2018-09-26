@@ -50,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -91,9 +87,9 @@
     scheme: 'Mist',
     version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    fastclick: ,
-    lazyload: ,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -221,28 +217,32 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">首页</a>
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">分类</a>
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">归档</a>
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">关于</a>
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
   </li>
 
       
@@ -251,7 +251,8 @@
           
             <a href="javascript:;" class="popup-trigger">
           
-            搜索</a>
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Suche</a>
         </li>
       
     </ul>
@@ -275,7 +276,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -323,10 +324,10 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/23种设计模式备忘和理解/">
+    <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -342,8 +343,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/23种设计模式备忘和理解/" itemprop="url">
-                  23种设计模式备忘和理解——1.分类
+                <a class="post-title-link" href="/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/" itemprop="url">
+                  Android EditText 通过TextWatcher实现自动补全的注意点
                 </a>
               
             
@@ -362,16 +363,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-09 14:50:47" itemprop="dateCreated datePublished" datetime="2018-03-09T14:50:47+08:00">2018-03-09</time>
+              <time title="Post created: 2018-03-09 14:50:47" itemprop="dateCreated datePublished" datetime="2018-03-09T14:50:47+08:00">2018-03-09</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -384,10 +401,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/移动开发/" itemprop="url" rel="index"><span itemprop="name">移动开发</span></a></span>
 
                 
                 
@@ -402,10 +419,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/09/23种设计模式备忘和理解/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/09/23种设计模式备忘和理解/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -435,34 +452,14 @@
       
         
           
-          设计模式分类创建型-5种
-单例模式
-建造者模式
-原型模式
-工厂方法模式
-抽象工厂模式结构型-7种
-适配器模式
-装饰者模式
-结合模式
-桥接模式
-外观模式
-享元模式
-代理模式行为型-11种
-策略模式
-观察者模式
-迭代器模式
-命令模式模式
-备忘录模式
-中介者模式
-解释器模式
-访问者模式
-责任链模式
-状态模
+          Android EditText 通过TextWatcher实现自动补全的注意点CSDN文章对应地址
+背景需求想要实现输入框在用户输入了一定文本的情况下 自动填充一个可能用户想要的结果，类似Chrome手机版的搜索框
+实现12345678910111213141516171819202122priv
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/09/23种设计模式备忘和理解/#more" rel="contents">
-              阅读全文 &raquo;
+            <a class="btn" href="/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/#more" rel="contents">
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -520,7 +517,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Android View焦点输出/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -556,16 +553,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-09 14:42:52" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">2018-03-09</time>
+              <time title="Post created: 2018-03-09 14:42:52" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">2018-03-09</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -578,7 +591,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/移动开发/" itemprop="url" rel="index"><span itemprop="name">移动开发</span></a></span>
@@ -636,7 +649,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/09/Android View焦点输出/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -694,7 +707,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -730,16 +743,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-09 14:42:52" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">2018-03-09</time>
+              <time title="Post created: 2018-03-09 14:42:52" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">2018-03-09</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -752,7 +781,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
@@ -811,7 +840,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -869,7 +898,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -905,16 +934,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-09 14:39:58" itemprop="dateCreated datePublished" datetime="2018-03-09T14:39:58+08:00">2018-03-09</time>
+              <time title="Post created: 2018-03-09 14:39:58" itemprop="dateCreated datePublished" datetime="2018-03-09T14:39:58+08:00">2018-03-09</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -927,7 +972,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/移动开发/" itemprop="url" rel="index"><span itemprop="name">移动开发</span></a></span>
@@ -988,7 +1033,198 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/02/Hexo同时部署coding和github/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wenquan's Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/02/Hexo同时部署coding和github/" itemprop="url">
+                  Hexo同时部署coding和github
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-03-02 10:01:33" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">2018-03-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/02/Hexo同时部署coding和github/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/02/Hexo同时部署coding和github/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          阿里云解析配置
+ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址和国外github服务器地址
+将这两个ip添加为A记录，主机记录为www，记录值填写ping出来的地址，将coding的ip设置为默认的，将github的ip设置为【世界】
+添加两个C
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/02/Hexo同时部署coding和github/#more" rel="contents">
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1046,7 +1282,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/02/18.02总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1082,16 +1318,32 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-02 10:01:33" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">2018-03-02</time>
+              <time title="Post created: 2018-03-02 10:01:33" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">2018-03-02</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -1104,7 +1356,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/" itemprop="url" rel="index"><span itemprop="name">总结</span></a></span>
@@ -1170,182 +1422,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/02/18.02总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/02/Hexo同时部署coding和github/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wenquan's Note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/02/Hexo同时部署coding和github/" itemprop="url">
-                  Hexo同时部署coding和github
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-03-02 10:01:33" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">2018-03-02</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/02/Hexo同时部署coding和github/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/02/Hexo同时部署coding和github/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          阿里云解析配置
-ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址和国外github服务器地址
-将这两个ip添加为A记录，主机记录为www，记录值填写ping出来的地址，将coding的ip设置为默认的，将github的ip设置为【世界】
-添加两个C
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/02/Hexo同时部署coding和github/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1421,10 +1498,81 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-author-name" itemprop="name">Wenquan</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
           
 
           
@@ -1473,11 +1621,11 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">博主</span>
+  <span class="author" itemprop="copyrightHolder">Wenquan</span>
 
   
 
@@ -1487,13 +1635,15 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
 
 
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
 
 
 
-  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></p></div>
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></div>
 
 
         
@@ -1501,7 +1651,17 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
 
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
   
 </div>
 
@@ -1550,8 +1710,6 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
 
 
-  
-
 
 
 
@@ -1581,11 +1739,6 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
@@ -1611,16 +1764,12 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
   
 
   
-    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    <script id="dsq-count-scr" src="https://mxlwq.disqus.com/count.js" async></script>
   
 
   
 
 
-
-
-
-  
 
 
 

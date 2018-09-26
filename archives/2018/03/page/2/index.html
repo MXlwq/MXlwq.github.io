@@ -50,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -91,9 +87,9 @@
     scheme: 'Mist',
     version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    fastclick: ,
-    lazyload: ,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -135,7 +131,7 @@
   };
 </script>
 
-  <title>归档 | Wenquan's Note</title>
+  <title>Archiv | Wenquan's Note</title>
   
 
 
@@ -220,28 +216,32 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">首页</a>
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">分类</a>
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives menu-item-active">
-    <a href="/archives/" rel="section">归档</a>
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">关于</a>
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
   </li>
 
       
@@ -250,7 +250,8 @@
           
             <a href="javascript:;" class="popup-trigger">
           
-            搜索</a>
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Suche</a>
         </li>
       
     </ul>
@@ -293,7 +294,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -333,6 +334,15 @@
       <span class="archive-move-on"></span>
 
       
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        Öhm..! Insgesamt 16 Artikel. Bleib dran.
+      </span>
+      
 
       
 
@@ -355,9 +365,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/03/02/Hexo同时部署coding和github/" itemprop="url">
+            <a class="post-title-link" href="/2018/03/02/18.02总结/" itemprop="url">
               
-                <span itemprop="name">Hexo同时部署coding和github</span>
+                <span itemprop="name">18.02总结</span>
               
             </a>
         
@@ -419,10 +429,81 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-author-name" itemprop="name">Wenquan</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
           
 
           
@@ -471,11 +552,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">博主</span>
+  <span class="author" itemprop="copyrightHolder">Wenquan</span>
 
   
 
@@ -485,13 +566,15 @@
 
 
 
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
 
 
 
-  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></p></div>
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></div>
 
 
         
@@ -499,7 +582,17 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
 
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
   
 </div>
 
@@ -548,8 +641,6 @@
 
 
 
-  
-
 
 
 
@@ -579,11 +670,6 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
@@ -609,16 +695,12 @@
   
 
   
-    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    <script id="dsq-count-scr" src="https://mxlwq.disqus.com/count.js" async></script>
   
 
   
 
 
-
-
-
-  
 
 
 

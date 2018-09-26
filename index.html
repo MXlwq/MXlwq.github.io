@@ -50,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -91,9 +87,9 @@
     scheme: 'Mist',
     version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    fastclick: ,
-    lazyload: ,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
@@ -221,28 +217,32 @@
         
           
           <li class="menu-item menu-item-home menu-item-active">
-    <a href="/" rel="section">首页</a>
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Startseite</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">分类</a>
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Kategorien</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">归档</a>
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archiv</a>
   </li>
         
         
         
           
           <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">关于</a>
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />Über</a>
   </li>
 
       
@@ -251,7 +251,8 @@
           
             <a href="javascript:;" class="popup-trigger">
           
-            搜索</a>
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Suche</a>
         </li>
       
     </ul>
@@ -275,7 +276,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -326,7 +327,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/06/19/Bug记录之安卓-9图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -362,16 +363,20 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-06-19 14:21:45" itemprop="dateCreated datePublished" datetime="2018-06-19T14:21:45+08:00">2018-06-19</time>
+              <time title="Post created: 2018-06-19 14:21:45 / Updated at: 14:22:24" itemprop="dateCreated datePublished" datetime="2018-06-19T14:21:45+08:00">2018-06-19</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -423,7 +428,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/19/Bug记录之安卓-9图/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -481,7 +486,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/06/01/Android-Studio-gitignore修改后不生效的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -517,16 +522,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-06-01 10:01:18" itemprop="dateCreated datePublished" datetime="2018-06-01T10:01:18+08:00">2018-06-01</time>
+              <time title="Post created: 2018-06-01 10:01:18" itemprop="dateCreated datePublished" datetime="2018-06-01T10:01:18+08:00">2018-06-01</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -580,7 +601,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/01/Android-Studio-gitignore修改后不生效的问题/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -638,7 +659,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/05/30/Android开发者重装Ubuntu需要做的几件事/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -674,16 +695,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-05-30 10:01:33" itemprop="dateCreated datePublished" datetime="2018-05-30T10:01:33+08:00">2018-05-30</time>
+              <time title="Post created: 2018-05-30 10:01:33" itemprop="dateCreated datePublished" datetime="2018-05-30T10:01:33+08:00">2018-05-30</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -696,7 +733,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
@@ -756,7 +793,7 @@ Python12sudo apt-get
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/30/Android开发者重装Ubuntu需要做的几件事/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -814,7 +851,7 @@ Python12sudo apt-get
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/05/04/Ubuntu-解压文件中文名乱码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -850,16 +887,32 @@ Python12sudo apt-get
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-05-04 10:00:50" itemprop="dateCreated datePublished" datetime="2018-05-04T10:00:50+08:00">2018-05-04</time>
+              <time title="Post created: 2018-05-04 10:00:50" itemprop="dateCreated datePublished" datetime="2018-05-04T10:00:50+08:00">2018-05-04</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -872,7 +925,7 @@ Python12sudo apt-get
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
@@ -931,7 +984,7 @@ Have Fun:)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/04/Ubuntu-解压文件中文名乱码/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -989,7 +1042,7 @@ Have Fun:)
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/04/17/Android-Intent定义选择器打开相机和相册/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1025,16 +1078,32 @@ Have Fun:)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-04-17 19:21:56" itemprop="dateCreated datePublished" datetime="2018-04-17T19:21:56+08:00">2018-04-17</time>
+              <time title="Post created: 2018-04-17 19:21:56" itemprop="dateCreated datePublished" datetime="2018-04-17T19:21:56+08:00">2018-04-17</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -1089,7 +1158,7 @@ Have Fun:)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/17/Android-Intent定义选择器打开相机和相册/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1147,7 +1216,7 @@ Have Fun:)
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/29/18-03总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1183,16 +1252,32 @@ Have Fun:)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-29 14:21:19" itemprop="dateCreated datePublished" datetime="2018-03-29T14:21:19+08:00">2018-03-29</time>
+              <time title="Post created: 2018-03-29 14:21:19" itemprop="dateCreated datePublished" datetime="2018-03-29T14:21:19+08:00">2018-03-29</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-19 14:23:01" itemprop="dateModified" datetime="2018-06-19T14:23:01+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -1243,7 +1328,7 @@ Have Fun:)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/29/18-03总结/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1301,7 +1386,7 @@ Have Fun:)
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/26/Fragment-getContext-NoSuchMethodError/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1337,16 +1422,32 @@ Have Fun:)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-26 10:00:31" itemprop="dateCreated datePublished" datetime="2018-03-26T10:00:31+08:00">2018-03-26</time>
+              <time title="Post created: 2018-03-26 10:00:31" itemprop="dateCreated datePublished" datetime="2018-03-26T10:00:31+08:00">2018-03-26</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -1397,7 +1498,7 @@ Have Fun:)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/26/Fragment-getContext-NoSuchMethodError/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1455,7 +1556,7 @@ Have Fun:)
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/15/Ubuntu-ext硬盘权限修改为当前用户/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1491,16 +1592,32 @@ Have Fun:)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-15 19:17:48" itemprop="dateCreated datePublished" datetime="2018-03-15T19:17:48+08:00">2018-03-15</time>
+              <time title="Post created: 2018-03-15 19:17:48" itemprop="dateCreated datePublished" datetime="2018-03-15T19:17:48+08:00">2018-03-15</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -1513,7 +1630,7 @@ Have Fun:)
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
@@ -1572,7 +1689,7 @@ Have Fun:)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/15/Ubuntu-ext硬盘权限修改为当前用户/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1630,7 +1747,7 @@ Have Fun:)
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/15/Ubuntu-Hexo搭建需要配置nodejs环境时提示版本过低的方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1666,16 +1783,32 @@ Have Fun:)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-15 10:00:04" itemprop="dateCreated datePublished" datetime="2018-03-15T10:00:04+08:00">2018-03-15</time>
+              <time title="Post created: 2018-03-15 10:00:04" itemprop="dateCreated datePublished" datetime="2018-03-15T10:00:04+08:00">2018-03-15</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -1728,7 +1861,7 @@ Have Fun:)
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/15/Ubuntu-Hexo搭建需要配置nodejs环境时提示版本过低的方案/#more" rel="contents">
-              阅读全文 &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1783,10 +1916,10 @@ Have Fun:)
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/">
+    <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/23种设计模式备忘和理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
+      <meta itemprop="name" content="Wenquan">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1802,8 +1935,8 @@ Have Fun:)
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/" itemprop="url">
-                  Android EditText 通过TextWatcher实现自动补全的注意点
+                <a class="post-title-link" href="/2018/03/09/23种设计模式备忘和理解/" itemprop="url">
+                  23种设计模式备忘和理解——1.分类
                 </a>
               
             
@@ -1822,16 +1955,32 @@ Have Fun:)
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="创建于：2018-03-09 14:50:47" itemprop="dateCreated datePublished" datetime="2018-03-09T14:50:47+08:00">2018-03-09</time>
+              <time title="Post created: 2018-03-09 14:50:47" itemprop="dateCreated datePublished" datetime="2018-03-09T14:50:47+08:00">2018-03-09</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2018-06-15 10:27:26" itemprop="dateModified" datetime="2018-06-15T10:27:26+08:00">2018-06-15</time>
+              
             
           </span>
 
@@ -1844,10 +1993,10 @@ Have Fun:)
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">in</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/移动开发/" itemprop="url" rel="index"><span itemprop="name">移动开发</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
 
                 
                 
@@ -1862,10 +2011,10 @@ Have Fun:)
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/09/23种设计模式备忘和理解/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/09/23种设计模式备忘和理解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1895,14 +2044,34 @@ Have Fun:)
       
         
           
-          Android EditText 通过TextWatcher实现自动补全的注意点CSDN文章对应地址
-背景需求想要实现输入框在用户输入了一定文本的情况下 自动填充一个可能用户想要的结果，类似Chrome手机版的搜索框
-实现12345678910111213141516171819202122priv
+          设计模式分类创建型-5种
+单例模式
+建造者模式
+原型模式
+工厂方法模式
+抽象工厂模式结构型-7种
+适配器模式
+装饰者模式
+结合模式
+桥接模式
+外观模式
+享元模式
+代理模式行为型-11种
+策略模式
+观察者模式
+迭代器模式
+命令模式模式
+备忘录模式
+中介者模式
+解释器模式
+访问者模式
+责任链模式
+状态模
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/09/Android-EditText-通过TextWatcher实现自动补全的注意点/#more" rel="contents">
-              阅读全文 &raquo;
+            <a class="btn" href="/2018/03/09/23种设计模式备忘和理解/#more" rel="contents">
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1978,10 +2147,81 @@ Have Fun:)
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-author-name" itemprop="name">Wenquan</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
           
 
           
@@ -2030,11 +2270,11 @@ Have Fun:)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">博主</span>
+  <span class="author" itemprop="copyrightHolder">Wenquan</span>
 
   
 
@@ -2044,13 +2284,15 @@ Have Fun:)
 
 
 
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
 
 
 
-  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></p></div>
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></div>
 
 
         
@@ -2058,7 +2300,17 @@ Have Fun:)
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
 
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
   
 </div>
 
@@ -2107,8 +2359,6 @@ Have Fun:)
 
 
 
-  
-
 
 
 
@@ -2138,11 +2388,6 @@ Have Fun:)
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
@@ -2168,16 +2413,12 @@ Have Fun:)
   
 
   
-    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    <script id="dsq-count-scr" src="https://mxlwq.disqus.com/count.js" async></script>
   
 
   
 
 
-
-
-
-  
 
 
 
