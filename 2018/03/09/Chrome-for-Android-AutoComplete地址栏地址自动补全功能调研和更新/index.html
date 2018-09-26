@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,Chrome,Gboard," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Chrome地址栏地址自动补全功能调研和更新CSDN文章对应地址 Chrome地址栏地址自动补全功能预览补全前提：  使用Gboard输入法 Gboard输入法打开了【文字更正】功能里面的现实建议栏补全逻辑： 输入一个字符后，将推荐的第一个链接补全，补全的文字为蓝色背景选中状态，并且用户自己输入的文本下面有下划线（这个下划线不是自己通过SpannableString来实现的，应该是EditText">
+<meta name="keywords" content="Android,Chrome,Gboard">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome for Android AutoComplete地址栏地址自动补全功能调研和更新">
+<meta property="og:url" content="http://mobiledevelop.cn/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/index.html">
+<meta property="og:site_name" content="李文全的博客">
+<meta property="og:description" content="Chrome地址栏地址自动补全功能调研和更新CSDN文章对应地址 Chrome地址栏地址自动补全功能预览补全前提：  使用Gboard输入法 Gboard输入法打开了【文字更正】功能里面的现实建议栏补全逻辑： 输入一个字符后，将推荐的第一个链接补全，补全的文字为蓝色背景选中状态，并且用户自己输入的文本下面有下划线（这个下划线不是自己通过SpannableString来实现的，应该是EditText">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xruee.com1.z0.glb.clouddn.com/video2gif_20180308_152921.gif">
+<meta property="og:image" content="http://7xruee.com1.z0.glb.clouddn.com/video2gif_20180308_151910.gif">
+<meta property="og:updated_time" content="2018-06-15T02:27:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chrome for Android AutoComplete地址栏地址自动补全功能调研和更新">
+<meta name="twitter:description" content="Chrome地址栏地址自动补全功能调研和更新CSDN文章对应地址 Chrome地址栏地址自动补全功能预览补全前提：  使用Gboard输入法 Gboard输入法打开了【文字更正】功能里面的现实建议栏补全逻辑： 输入一个字符后，将推荐的第一个链接补全，补全的文字为蓝色背景选中状态，并且用户自己输入的文本下面有下划线（这个下划线不是自己通过SpannableString来实现的，应该是EditText">
+<meta name="twitter:image" content="http://7xruee.com1.z0.glb.clouddn.com/video2gif_20180308_152921.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mobiledevelop.cn/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/"/>
+
+
+
+
+
+  <title>Chrome for Android AutoComplete地址栏地址自动补全功能调研和更新 | 李文全的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李文全的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mobiledevelop.cn/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="文全">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李文全的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Chrome for Android AutoComplete地址栏地址自动补全功能调研和更新</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-09T14:39:58+08:00">
+                2018-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/移动开发/" itemprop="url" rel="index">
+                    <span itemprop="name">移动开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Chrome地址栏地址自动补全功能调研和更新"><a href="#Chrome地址栏地址自动补全功能调研和更新" class="headerlink" title="Chrome地址栏地址自动补全功能调研和更新"></a>Chrome地址栏地址自动补全功能调研和更新</h1><p><a href="http://blog.csdn.net/lwq573384928/article/details/79484817" target="_blank" rel="noopener">CSDN文章对应地址</a></p>
+<h2 id="Chrome地址栏地址自动补全功能预览"><a href="#Chrome地址栏地址自动补全功能预览" class="headerlink" title="Chrome地址栏地址自动补全功能预览"></a>Chrome地址栏地址自动补全功能预览</h2><p><img src="http://7xruee.com1.z0.glb.clouddn.com/video2gif_20180308_152921.gif" alt="Chrome"><br>补全前提：</p>
+<ol>
+<li>使用Gboard输入法</li>
+<li>Gboard输入法打开了【文字更正】功能里面的现实建议栏<br>补全逻辑：</li>
+<li>输入一个字符后，将推荐的第一个链接补全，补全的文字为蓝色背景选中状态，并且用户自己输入的文本下面有下划线（这个下划线不是自己通过SpannableString来实现的，应该是EditText自己为待用户选择推荐（commitText）的的文本默认添加的）</li>
+<li>输入一个非字母类型的，会自动commitText，但是此时把非字母类型的字符删除后，输入法的输入建议会再次出现，并且之前的用户输入文本会再次出现下划线，这种状态其实就是带选择状态，可以通过输入法最顶部的推荐直接替换文字。</li>
+<li>选择了输入法的输入建议文本，浏览器也能继续进行输入推荐和自动补全</li>
+</ol>
+<h2 id="最初版本情况"><a href="#最初版本情况" class="headerlink" title="最初版本情况"></a>最初版本情况</h2><p>Chrome之前的版本其实不是这样的，而是类似于禁用了输入法的输入建议，而直接替换输入框的文本，再将一部分文字设置为select状态。<br>代码实现参考，<a href="http://blog.csdn.net/lwq573384928/article/details/79317064" target="_blank" rel="noopener">Android EditText 通过TextWatcher实现自动补全的注意点</a></p>
+<h2 id="Chrome最新版代码"><a href="#Chrome最新版代码" class="headerlink" title="Chrome最新版代码"></a>Chrome最新版代码</h2><h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p><img src="http://7xruee.com1.z0.glb.clouddn.com/video2gif_20180308_151910.gif" alt="自己实现的效果图"></p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><p>主要核心代码，忽略了一些变量的定义，详细参考Chrome源码即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br></pre></td><td class="code"><pre><span class="line">public void onAutoComplete(String suggestion) &#123;</span><br><span class="line">        String userText = getTextWithoutAutocomplete();</span><br><span class="line">        suggestion = suggestion.startsWith(userText) ? suggestion.replaceFirst(userText, &quot;&quot;) : &quot;&quot;;</span><br><span class="line">        if (shouldAutocomplete()) &#123;</span><br><span class="line">            setAutocompleteText(userText, suggestion);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void limitDisplayableLength() &#123;</span><br><span class="line">        // To limit displayable length we replace middle portion of the string with ellipsis.</span><br><span class="line">        // That affects only presentation of the text, and doesn&apos;t affect other aspects like</span><br><span class="line">        // copying to the clipboard, getting text with getText(), etc.</span><br><span class="line">        final int maxLength = MAX_DISPLAYABLE_LENGTH_END;</span><br><span class="line"></span><br><span class="line">        Editable text = getText();</span><br><span class="line">        int textLength = text.length();</span><br><span class="line">        if (textLength &lt;= maxLength) &#123;</span><br><span class="line">            if (mDidEllipsizeTextHint) &#123;</span><br><span class="line">                EllipsisSpan[] spans = text.getSpans(0, textLength, EllipsisSpan.class);</span><br><span class="line">                if (spans != null &amp;&amp; spans.length &gt; 0) &#123;</span><br><span class="line">                    assert spans.length == 1 : &quot;Should never apply more than a single EllipsisSpan&quot;;</span><br><span class="line">                    for (int i = 0; i &lt; spans.length; i++) &#123;</span><br><span class="line">                        text.removeSpan(spans[i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            mDidEllipsizeTextHint = false;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mDidEllipsizeTextHint = true;</span><br><span class="line"></span><br><span class="line">        int spanLeft = text.nextSpanTransition(0, textLength, EllipsisSpan.class);</span><br><span class="line">        if (spanLeft != textLength) return;</span><br><span class="line"></span><br><span class="line">        spanLeft = maxLength / 2;</span><br><span class="line">        text.setSpan(EllipsisSpan.INSTANCE, spanLeft, textLength - spanLeft,</span><br><span class="line">                Editable.SPAN_INCLUSIVE_EXCLUSIVE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean shouldAutocomplete() &#123;</span><br><span class="line">        boolean retVal = mBatchEditNestCount == 0 &amp;&amp; mLastEditWasTyping</span><br><span class="line">                &amp;&amp; mCurrentState.isCursorAtEndOfUserText() &amp;&amp; !isKeyboardBlacklisted()</span><br><span class="line">                &amp;&amp; isNonCompositionalText(getTextWithoutAutocomplete());</span><br><span class="line">        Log.i(TAG, &quot;shouldAutocomplete: &quot; + retVal);</span><br><span class="line">        return retVal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean isKeyboardBlacklisted() &#123;</span><br><span class="line">        String pkgName = getKeyboardPackageName();</span><br><span class="line">        return pkgName.contains(&quot;.iqqi&quot;) // crbug.com/767016</span><br><span class="line">                || pkgName.contains(&quot;omronsoft&quot;) || pkgName.contains(&quot;.iwnn&quot;); // crbug.com/758443</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getKeyboardPackageName() &#123;</span><br><span class="line">        String defaultIme = Settings.Secure.getString(</span><br><span class="line">                getContext().getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);</span><br><span class="line">        return defaultIme == null ? &quot;&quot; : defaultIme;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean isNonCompositionalText(String text) &#123;</span><br><span class="line">        // To start with, we are only activating this for English alphabets, European characters,</span><br><span class="line">        // numbers and URLs to avoid potential bad interactions with more complex IMEs.</span><br><span class="line">        // The rationale for including character sets with diacritical marks is that backspacing on</span><br><span class="line">        // a letter with a diacritical mark most likely deletes the whole character instead of</span><br><span class="line">        // removing the diacritical mark.</span><br><span class="line">        // TODO(changwan): also scan for other traditionally non-IME charsets.</span><br><span class="line">        return NON_COMPOSITIONAL_TEXT_PATTERN.matcher(text).matches();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onSelectionChanged(int selStart, int selEnd) &#123;</span><br><span class="line">        if (mCurrentState == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if (mCurrentState.getSelStart() == selStart &amp;&amp; mCurrentState.getSelEnd() == selEnd) return;</span><br><span class="line"></span><br><span class="line">        mCurrentState.setSelection(selStart, selEnd);</span><br><span class="line">        if (mBatchEditNestCount &gt; 0) return;</span><br><span class="line">        int len = mCurrentState.getUserText().length();</span><br><span class="line">        if (mCurrentState.hasAutocompleteText()) &#123;</span><br><span class="line">            if (selStart &gt; len || selEnd &gt; len) &#123;</span><br><span class="line">                Log.i(TAG, &quot;Autocomplete text is being touched. Make it real.&quot;);</span><br><span class="line">                if (mInputConnection != null) mInputConnection.commitAutocomplete();</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                Log.i(TAG, &quot;Touching before the cursor removes autocomplete.&quot;);</span><br><span class="line">                clearAutocompleteTextAndUpdateSpanCursor();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        notifyAutocompleteTextStateChanged();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void clearAutocompleteTextAndUpdateSpanCursor() &#123;</span><br><span class="line">        Log.i(TAG, &quot;clearAutocompleteAndUpdateSpanCursor&quot;);</span><br><span class="line">        clearAutocompleteText();</span><br><span class="line">        // Take effect and notify if not already in a batch edit.</span><br><span class="line">        if (mInputConnection != null) &#123;</span><br><span class="line">            mInputConnection.onBeginImeCommand();</span><br><span class="line">            mInputConnection.onEndImeCommand();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            mSpanCursorController.removeSpan();</span><br><span class="line">            notifyAutocompleteTextStateChanged();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">class AutocompleteState &#123;</span><br><span class="line">        private String mUserText;</span><br><span class="line">        private String mAutocompleteText;</span><br><span class="line">        private int mSelStart;</span><br><span class="line">        private int mSelEnd;</span><br><span class="line"></span><br><span class="line">        public AutocompleteState(AutocompleteState a) &#123;</span><br><span class="line">            copyFrom(a);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public AutocompleteState(String userText, String autocompleteText, int selStart, int selEnd) &#123;</span><br><span class="line">            set(userText, autocompleteText, selStart, selEnd);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void set(String userText, String autocompleteText, int selStart, int selEnd) &#123;</span><br><span class="line">            mUserText = userText;</span><br><span class="line">            mAutocompleteText = autocompleteText;</span><br><span class="line">            mSelStart = selStart;</span><br><span class="line">            mSelEnd = selEnd;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void copyFrom(AutocompleteState a) &#123;</span><br><span class="line">            set(a.mUserText, a.mAutocompleteText, a.mSelStart, a.mSelEnd);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public String getUserText() &#123;</span><br><span class="line">            return mUserText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public String getAutocompleteText() &#123;</span><br><span class="line">            return mAutocompleteText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public boolean hasAutocompleteText() &#123;</span><br><span class="line">            return !TextUtils.isEmpty(mAutocompleteText);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /** @return The whole text including autocomplete text. */</span><br><span class="line">        public String getText() &#123;</span><br><span class="line">            return mUserText + mAutocompleteText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public int getSelStart() &#123;</span><br><span class="line">            return mSelStart;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public int getSelEnd() &#123;</span><br><span class="line">            return mSelEnd;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void setSelection(int selStart, int selEnd) &#123;</span><br><span class="line">            mSelStart = selStart;</span><br><span class="line">            mSelEnd = selEnd;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void setUserText(String userText) &#123;</span><br><span class="line">            mUserText = userText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void setAutocompleteText(String autocompleteText) &#123;</span><br><span class="line">            mAutocompleteText = autocompleteText;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void clearAutocompleteText() &#123;</span><br><span class="line">            mAutocompleteText = &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public boolean isCursorAtEndOfUserText() &#123;</span><br><span class="line">            return mSelStart == mUserText.length() &amp;&amp; mSelEnd == mUserText.length();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public boolean isWholeUserTextSelected() &#123;</span><br><span class="line">            return mSelStart == 0 &amp;&amp; mSelEnd == mUserText.length();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * @param prevState The previous state to compare the current state with.</span><br><span class="line">         * @return Whether the current state is backward-deleted from prevState.</span><br><span class="line">         */</span><br><span class="line">        public boolean isBackwardDeletedFrom(AutocompleteState prevState) &#123;</span><br><span class="line">            return isCursorAtEndOfUserText() &amp;&amp; prevState.isCursorAtEndOfUserText()</span><br><span class="line">                    &amp;&amp; isPrefix(mUserText, prevState.mUserText);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * @param prevState The previous state to compare the current state with.</span><br><span class="line">         * @return Whether the current state is forward-typed from prevState.</span><br><span class="line">         */</span><br><span class="line">        public boolean isForwardTypedFrom(AutocompleteState prevState) &#123;</span><br><span class="line">            return isCursorAtEndOfUserText() &amp;&amp; prevState.isCursorAtEndOfUserText()</span><br><span class="line">                    &amp;&amp; isPrefix(prevState.mUserText, mUserText);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * @param prevState The previous state to compare the current state with.</span><br><span class="line">         * @return The differential string that has been backward deleted.</span><br><span class="line">         */</span><br><span class="line">        public String getBackwardDeletedTextFrom(AutocompleteState prevState) &#123;</span><br><span class="line">            if (!isBackwardDeletedFrom(prevState)) return null;</span><br><span class="line">            return prevState.mUserText.substring(mUserText.length());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public boolean isPrefix(String a, String b) &#123;</span><br><span class="line">            return b.startsWith(a) &amp;&amp; b.length() &gt; a.length();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * When the user manually types the next character that was already suggested in the previous</span><br><span class="line">         * autocomplete, then the suggestion is still valid if we simply remove one character from the</span><br><span class="line">         * beginning of it. For example, if prev = &quot;a[bc]&quot; and current text is &quot;ab&quot;, this method</span><br><span class="line">         * constructs &quot;ab[c]&quot;.</span><br><span class="line">         * @param prevState The previous state.</span><br><span class="line">         * @return Whether the shifting was successful.</span><br><span class="line">         */</span><br><span class="line">        public boolean reuseAutocompleteTextIfPrefixExtension(AutocompleteState prevState) &#123;</span><br><span class="line">            // Shift when user text has grown or remains the same, but still prefix of prevState&apos;s whole</span><br><span class="line">            // text.</span><br><span class="line">            int diff = mUserText.length() - prevState.mUserText.length();</span><br><span class="line">            if (diff &lt; 0) return false;</span><br><span class="line">            if (!isPrefix(mUserText, prevState.getText())) return false;</span><br><span class="line">            mAutocompleteText = prevState.mAutocompleteText.substring(diff);</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void commitAutocompleteText() &#123;</span><br><span class="line">            mUserText += mAutocompleteText;</span><br><span class="line">            mAutocompleteText = &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean equals(Object o) &#123;</span><br><span class="line">            if (!(o instanceof AutocompleteState)) return false;</span><br><span class="line">            if (o == this) return true;</span><br><span class="line">            AutocompleteState a = (AutocompleteState) o;</span><br><span class="line">            return mUserText.equals(a.mUserText) &amp;&amp; mAutocompleteText.equals(a.mAutocompleteText)</span><br><span class="line">                    &amp;&amp; mSelStart == a.mSelStart &amp;&amp; mSelEnd == a.mSelEnd;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public int hashCode() &#123;</span><br><span class="line">            return mUserText.hashCode() * 2 + mAutocompleteText.hashCode() * 3 + mSelStart * 5</span><br><span class="line">                    + mSelEnd * 7;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public String toString() &#123;</span><br><span class="line">            return String.format(Locale.US, &quot;AutocompleteState &#123;[%s][%s] [%d-%d]&#125;&quot;, mUserText,</span><br><span class="line">                    mAutocompleteText, mSelStart, mSelEnd);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean hasAutocomplete() &#123;</span><br><span class="line">        boolean retVal = mCurrentState.hasAutocompleteText();</span><br><span class="line">        Log.i(TAG, &quot;hasAutocomplete: &quot; + retVal);</span><br><span class="line">        return retVal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private class AutocompleteInputConnection extends InputConnectionWrapper &#123;</span><br><span class="line">        private final AutocompleteState mPreBatchEditState;</span><br><span class="line"></span><br><span class="line">        public AutocompleteInputConnection() &#123;</span><br><span class="line">            super(null, true);</span><br><span class="line">            mPreBatchEditState = new AutocompleteState(mCurrentState);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private boolean incrementBatchEditCount() &#123;</span><br><span class="line">            ++mBatchEditNestCount;</span><br><span class="line">            // After the outermost super.beginBatchEdit(), EditText will stop selection change</span><br><span class="line">            // update to the IME app.</span><br><span class="line">            return super.beginBatchEdit();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private boolean decrementBatchEditCount() &#123;</span><br><span class="line">            --mBatchEditNestCount;</span><br><span class="line">            return super.endBatchEdit();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void commitAutocomplete() &#123;</span><br><span class="line">            Log.i(TAG, &quot;commitAutocomplete&quot;);</span><br><span class="line">            if (!hasAutocomplete()) return;</span><br><span class="line">            mCurrentState.commitAutocompleteText();</span><br><span class="line">            // Invalidate mPreviouslySetState.</span><br><span class="line">            mPreviouslySetState.copyFrom(mCurrentState);</span><br><span class="line">            mLastEditWasTyping = false;</span><br><span class="line">            incrementBatchEditCount(); // avoids additional notifyAutocompleteTextStateChanged()</span><br><span class="line">            mSpanCursorController.commitSpan();</span><br><span class="line">            decrementBatchEditCount();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean beginBatchEdit() &#123;</span><br><span class="line">            Log.i(TAG, &quot;beginBatchEdit&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = incrementBatchEditCount();</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * Always call this at the beginning of any IME command. Compare this with beginBatchEdit()</span><br><span class="line">         * which is by itself an IME command.</span><br><span class="line">         * @return Whether the call was successful.</span><br><span class="line">         */</span><br><span class="line">        public boolean onBeginImeCommand() &#123;</span><br><span class="line">            Log.i(TAG, &quot;onBeginImeCommand: &quot; + mBatchEditNestCount);</span><br><span class="line">            boolean retVal = incrementBatchEditCount();</span><br><span class="line">            if (mBatchEditNestCount == 1) &#123;</span><br><span class="line">                mPreBatchEditState.copyFrom(mCurrentState);</span><br><span class="line">            &#125; else if (mDeletePostfixOnNextBeginImeCommand &gt; 0) &#123;</span><br><span class="line">                int len = getText().length();</span><br><span class="line">                getText().delete(len - mDeletePostfixOnNextBeginImeCommand, len);</span><br><span class="line">            &#125;</span><br><span class="line">            mDeletePostfixOnNextBeginImeCommand = 0;</span><br><span class="line">            mSpanCursorController.removeSpan();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void restoreBackspacedText(String diff) &#123;</span><br><span class="line">            Log.i(TAG, &quot;restoreBackspacedText. diff: &quot; + diff);</span><br><span class="line"></span><br><span class="line">            if (mBatchEditNestCount &gt; 0) &#123;</span><br><span class="line">                // If batch edit hasn&apos;t finished, we will restore backspaced text only for visual</span><br><span class="line">                // effects. However, for internal operations to work correctly, we need to remove</span><br><span class="line">                // the restored diff at the beginning of next IME operation.</span><br><span class="line">                mDeletePostfixOnNextBeginImeCommand = diff.length();</span><br><span class="line">            &#125;</span><br><span class="line">            if (mBatchEditNestCount == 0) &#123; // only at the outermost batch edit</span><br><span class="line">                if (shouldFinishCompositionOnDeletion()) super.finishComposingText();</span><br><span class="line">            &#125;</span><br><span class="line">            incrementBatchEditCount(); // avoids additional notifyAutocompleteTextStateChanged()</span><br><span class="line">            Editable editable = getEditableText();</span><br><span class="line">            editable.append(diff);</span><br><span class="line">            decrementBatchEditCount();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private boolean setAutocompleteSpan() &#123;</span><br><span class="line">            mSpanCursorController.removeSpan();</span><br><span class="line">            if (!mCurrentState.isCursorAtEndOfUserText()) return false;</span><br><span class="line"></span><br><span class="line">            if (mCurrentState.reuseAutocompleteTextIfPrefixExtension(mPreviouslySetState)) &#123;</span><br><span class="line">                mSpanCursorController.setSpan(mCurrentState);</span><br><span class="line">                return true;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean endBatchEdit() &#123;</span><br><span class="line">            Log.i(TAG, &quot;endBatchEdit&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = decrementBatchEditCount();</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         * Always call this at the end of an IME command. Compare this with endBatchEdit()</span><br><span class="line">         * which is by itself an IME command.</span><br><span class="line">         * @return Whether the call was successful.</span><br><span class="line">         */</span><br><span class="line">        public boolean onEndImeCommand() &#123;</span><br><span class="line">            Log.i(TAG, &quot;onEndImeCommand: &quot; + (mBatchEditNestCount - 1));</span><br><span class="line">            String diff = mCurrentState.getBackwardDeletedTextFrom(mPreBatchEditState);</span><br><span class="line">            if (diff != null) &#123;</span><br><span class="line">                // Update selection first such that keyboard app gets what it expects.</span><br><span class="line">                boolean retVal = decrementBatchEditCount();</span><br><span class="line"></span><br><span class="line">                if (mPreBatchEditState.hasAutocompleteText()) &#123;</span><br><span class="line">                    // Undo delete to retain the last character and only remove autocomplete text.</span><br><span class="line">                    restoreBackspacedText(diff);</span><br><span class="line">                &#125;</span><br><span class="line">                mLastEditWasTyping = false;</span><br><span class="line">                clearAutocompleteText();</span><br><span class="line">                notifyAutocompleteTextStateChanged();</span><br><span class="line">                return retVal;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!setAutocompleteSpan()) &#123;</span><br><span class="line">                clearAutocompleteText();</span><br><span class="line">            &#125;</span><br><span class="line">            boolean retVal = decrementBatchEditCount();</span><br><span class="line">            // Simply typed some characters or whole text selection has been overridden.</span><br><span class="line">            if (mCurrentState.isForwardTypedFrom(mPreBatchEditState)</span><br><span class="line">                    || (mPreBatchEditState.isWholeUserTextSelected()</span><br><span class="line">                    &amp;&amp; mCurrentState.getUserText().length() &gt; 0</span><br><span class="line">                    &amp;&amp; mCurrentState.isCursorAtEndOfUserText())) &#123;</span><br><span class="line">                mLastEditWasTyping = true;</span><br><span class="line">            &#125;</span><br><span class="line">            notifyAutocompleteTextStateChanged();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean commitText(CharSequence text, int newCursorPosition) &#123;</span><br><span class="line">            Log.i(TAG, &quot;commitText: &quot; + text);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.commitText(text, newCursorPosition);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean setComposingText(CharSequence text, int newCursorPosition) &#123;</span><br><span class="line">            Log.i(TAG, &quot;setComposingText: &quot; + text);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.setComposingText(text, newCursorPosition);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean setComposingRegion(int start, int end) &#123;</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.setComposingRegion(start, end);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean finishComposingText() &#123;</span><br><span class="line">            Log.i(TAG, &quot;finishComposingText&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.finishComposingText();</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean deleteSurroundingText(final int beforeLength, final int afterLength) &#123;</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.deleteSurroundingText(beforeLength, afterLength);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean setSelection(final int start, final int end) &#123;</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.setSelection(start, end);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean performEditorAction(final int editorAction) &#123;</span><br><span class="line">            Log.i(TAG, &quot;performEditorAction: &quot; + editorAction);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            commitAutocomplete();</span><br><span class="line">            boolean retVal = super.performEditorAction(editorAction);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean sendKeyEvent(final KeyEvent event) &#123;</span><br><span class="line">            Log.i(TAG, &quot;sendKeyEvent: &quot; + event.getKeyCode());</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.sendKeyEvent(event);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public ExtractedText getExtractedText(final ExtractedTextRequest request, final int flags) &#123;</span><br><span class="line">            Log.i(TAG, &quot;getExtractedText&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            ExtractedText retVal = super.getExtractedText(request, flags);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public CharSequence getTextAfterCursor(final int n, final int flags) &#123;</span><br><span class="line">            Log.i(TAG, &quot;getTextAfterCursor&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            CharSequence retVal = super.getTextAfterCursor(n, flags);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public CharSequence getTextBeforeCursor(final int n, final int flags) &#123;</span><br><span class="line">            Log.i(TAG, &quot;getTextBeforeCursor&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            CharSequence retVal = super.getTextBeforeCursor(n, flags);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public CharSequence getSelectedText(final int flags) &#123;</span><br><span class="line">            Log.i(TAG, &quot;getSelectedText&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            CharSequence retVal = super.getSelectedText(flags);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean commitCompletion(CompletionInfo text) &#123;</span><br><span class="line">            Log.i(TAG, &quot;commitCompletion&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.commitCompletion(text);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean commitContent(InputContentInfo inputContentInfo, int flags, Bundle opts) &#123;</span><br><span class="line">            Log.i(TAG, &quot;commitContent&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.commitContent(inputContentInfo, flags, opts);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean commitCorrection(CorrectionInfo correctionInfo) &#123;</span><br><span class="line">            Log.i(TAG, &quot;commitCorrection&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.commitCorrection(correctionInfo);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean deleteSurroundingTextInCodePoints(int beforeLength, int afterLength) &#123;</span><br><span class="line">            Log.i(TAG, &quot;deleteSurroundingTextInCodePoints&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.deleteSurroundingTextInCodePoints(beforeLength, afterLength);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public int getCursorCapsMode(int reqModes) &#123;</span><br><span class="line">            Log.i(TAG, &quot;getCursorCapsMode&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            int retVal = super.getCursorCapsMode(reqModes);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean requestCursorUpdates(int cursorUpdateMode) &#123;</span><br><span class="line">            Log.i(TAG, &quot;requestCursorUpdates&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.requestCursorUpdates(cursorUpdateMode);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean clearMetaKeyStates(int states) &#123;</span><br><span class="line">            Log.i(TAG, &quot;clearMetaKeyStates&quot;);</span><br><span class="line">            onBeginImeCommand();</span><br><span class="line">            boolean retVal = super.clearMetaKeyStates(states);</span><br><span class="line">            onEndImeCommand();</span><br><span class="line">            return retVal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean shouldFinishCompositionOnDeletion() &#123;</span><br><span class="line">        String defaultIme = Settings.Secure.getString(</span><br><span class="line">                getContext().getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);</span><br><span class="line">        defaultIme = defaultIme == null ? &quot;&quot; : defaultIme;</span><br><span class="line"></span><br><span class="line">        return !defaultIme.contains(&quot;com.sec.android.inputmethod&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int mDeletePostfixOnNextBeginImeCommand;</span><br><span class="line"></span><br><span class="line">    private void clearAutocompleteText() &#123;</span><br><span class="line">        Log.i(TAG, &quot;clearAutocomplete&quot;);</span><br><span class="line">        mPreviouslySetState.clearAutocompleteText();</span><br><span class="line">        mCurrentState.clearAutocompleteText();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private final AutocompleteState mPreviouslyNotifiedState;</span><br><span class="line">    private void notifyAutocompleteTextStateChanged() &#123;</span><br><span class="line"></span><br><span class="line">        if (mBatchEditNestCount &gt; 0) &#123;</span><br><span class="line">            // crbug.com/764749</span><br><span class="line">            Log.w(TAG, &quot;Did not notify - in batch edit.&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if (mCurrentState.equals(mPreviouslyNotifiedState)) &#123;</span><br><span class="line">            // crbug.com/764749</span><br><span class="line">            Log.w(TAG, &quot;Did not notify - no change.&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if (mCurrentState.getUserText().equals(mPreviouslyNotifiedState.getUserText())</span><br><span class="line">                &amp;&amp; (mCurrentState.hasAutocompleteText()</span><br><span class="line">                || !mPreviouslyNotifiedState.hasAutocompleteText())) &#123;</span><br><span class="line">            // Nothing has changed except that autocomplete text has been set or modified. Or</span><br><span class="line">            // selection change did not affect autocomplete text. Autocomplete text is set by the</span><br><span class="line">            // controller, so only text change or deletion of autocomplete text should be notified.</span><br><span class="line">            mPreviouslyNotifiedState.copyFrom(mCurrentState);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        mPreviouslyNotifiedState.copyFrom(mCurrentState);</span><br><span class="line">        if (mIgnoreTextChangeFromAutocomplete) &#123;</span><br><span class="line">            // crbug.com/764749</span><br><span class="line">            Log.w(TAG, &quot;Did not notify - ignored.&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        // The current model&apos;s mechanism always moves the cursor at the end of user text, so we</span><br><span class="line">        // don&apos;t need to update the display.</span><br><span class="line">        onAutocompleteTextStateChanged(false /* updateDisplay */);</span><br><span class="line">    &#125;</span><br><span class="line">    private static class SpanCursorController &#123;</span><br><span class="line">        private final PopUpWindowInAutoCompleteTextView mDelegate;</span><br><span class="line">        private BackgroundColorSpan mSpan;</span><br><span class="line"></span><br><span class="line">        public SpanCursorController(PopUpWindowInAutoCompleteTextView delegate) &#123;</span><br><span class="line">            mDelegate = delegate;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void setSpan(AutocompleteState state) &#123;</span><br><span class="line">            int sel = state.getSelStart();</span><br><span class="line"></span><br><span class="line">            if (mSpan == null) mSpan = new BackgroundColorSpan(mDelegate.getHighlightColor());</span><br><span class="line">            SpannableString spanString = new SpannableString(state.getAutocompleteText());</span><br><span class="line">            // The flag here helps make sure that span does not get spill to other part of the text.</span><br><span class="line">            spanString.setSpan(mSpan, 0, state.getAutocompleteText().length(),</span><br><span class="line">                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);</span><br><span class="line">            Editable editable = mDelegate.getEditableText();</span><br><span class="line">            editable.append(spanString);</span><br><span class="line"></span><br><span class="line">            // Keep the original selection before adding spannable string.</span><br><span class="line">            Selection.setSelection(editable, sel, sel);</span><br><span class="line">            setCursorVisible(false);</span><br><span class="line">            Log.i(TAG, &quot;setSpan: &quot; + getEditableDebugString(editable));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void setCursorVisible(boolean visible) &#123;</span><br><span class="line">            if (mDelegate.isFocused()) mDelegate.setCursorVisible(visible);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private int getSpanIndex(Editable editable) &#123;</span><br><span class="line">            if (editable == null || mSpan == null) return -1;</span><br><span class="line">            return editable.getSpanStart(mSpan); // returns -1 if mSpan is not attached</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void reset() &#123;</span><br><span class="line">            setCursorVisible(true);</span><br><span class="line">            Editable editable = mDelegate.getEditableText();</span><br><span class="line">            int idx = getSpanIndex(editable);</span><br><span class="line">            if (idx != -1) &#123;</span><br><span class="line">                editable.removeSpan(mSpan);</span><br><span class="line">            &#125;</span><br><span class="line">            mSpan = null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public boolean removeSpan() &#123;</span><br><span class="line">            setCursorVisible(true);</span><br><span class="line">            Editable editable = mDelegate.getEditableText();</span><br><span class="line">            int idx = getSpanIndex(editable);</span><br><span class="line">            if (idx == -1) return false;</span><br><span class="line">            editable.removeSpan(mSpan);</span><br><span class="line">            editable.delete(idx, editable.length());</span><br><span class="line">            mSpan = null;</span><br><span class="line">            &#123;</span><br><span class="line">                Log.i(TAG, &quot;removeSpan - after removal: &quot; + getEditableDebugString(editable));</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void commitSpan() &#123;</span><br><span class="line">            mDelegate.getEditableText().removeSpan(mSpan);</span><br><span class="line">            setCursorVisible(true);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void reflectTextUpdateInState(AutocompleteState state, CharSequence text) &#123;</span><br><span class="line">            if (text instanceof Editable) &#123;</span><br><span class="line">                Editable editable = (Editable) text;</span><br><span class="line">                int idx = getSpanIndex(editable);</span><br><span class="line">                if (idx != -1) &#123;</span><br><span class="line">                    // We do not set autocomplete text here as model should solely control it.</span><br><span class="line">                    state.setUserText(editable.subSequence(0, idx).toString());</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            state.setUserText(text.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * @param editable The editable.</span><br><span class="line">     * @return Debug string for the given &#123;@Editable&#125;.</span><br><span class="line">     */</span><br><span class="line">    private static String getEditableDebugString(Editable editable) &#123;</span><br><span class="line">        return String.format(Locale.US, &quot;Editable &#123;[%s] SEL[%d %d] COM[%d %d]&#125;&quot;,</span><br><span class="line">                editable.toString(), Selection.getSelectionStart(editable),</span><br><span class="line">                Selection.getSelectionEnd(editable),</span><br><span class="line">                BaseInputConnection.getComposingSpanStart(editable),</span><br><span class="line">                BaseInputConnection.getComposingSpanEnd(editable));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) &#123;</span><br><span class="line">        Log.i(TAG, &quot;onTextChanged: &quot; + text);</span><br><span class="line">        if(mSpanCursorController==null)&#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        mSpanCursorController.reflectTextUpdateInState(mCurrentState, text);</span><br><span class="line">        if (mBatchEditNestCount &gt; 0) return; // let endBatchEdit() handles changes from IME.</span><br><span class="line">        // An external change such as text paste occurred.</span><br><span class="line">        mLastEditWasTyping = false;</span><br><span class="line">        clearAutocompleteTextAndUpdateSpanCursor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getTextWithoutAutocomplete() &#123;</span><br><span class="line">        String retVal = mCurrentState.getUserText();</span><br><span class="line">        Log.i(TAG, &quot;getTextWithoutAutocomplete: &quot; + retVal);</span><br><span class="line">        return retVal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onAutocompleteTextStateChanged(boolean updateDisplay) &#123;</span><br><span class="line">        if (updateDisplay) limitDisplayableLength();</span><br><span class="line">        onTextChangedForAutocomplete();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onTextChangedForAutocomplete() &#123;</span><br><span class="line">	    //触发搜索建议获取的逻辑</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Sets whether text changes should trigger autocomplete.</span><br><span class="line">     * &lt;p&gt;</span><br><span class="line">     * enabling autocomplete.</span><br><span class="line">     *</span><br><span class="line">     * @param ignoreAutocomplete Whether text changes should be ignored and no auto complete</span><br><span class="line">     *                           triggered.</span><br><span class="line">     */</span><br><span class="line">    public void setIgnoreTextChangeFromAutocomplete(boolean ignoreAutocomplete) &#123;</span><br><span class="line"></span><br><span class="line">        mIgnoreTextChangeFromAutocomplete = ignoreAutocomplete;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAutocompleteText(CharSequence userText, CharSequence inlineAutocompleteText) &#123;</span><br><span class="line">        setAutocompleteTextInternal(userText.toString(), inlineAutocompleteText.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void setAutocompleteTextInternal(String userText, String autocompleteText) &#123;</span><br><span class="line">        mPreviouslySetState.set(userText, autocompleteText, userText.length(), userText.length());</span><br><span class="line">        // TODO(changwan): avoid any unnecessary removal and addition of autocomplete text when it</span><br><span class="line">        // is not changed or when it is appended to the existing autocomplete text.</span><br><span class="line">        if (mInputConnection != null) &#123;</span><br><span class="line">            mInputConnection.onBeginImeCommand();</span><br><span class="line">            mInputConnection.onEndImeCommand();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public InputConnection onCreateInputConnection(EditorInfo outAttrs) &#123;</span><br><span class="line">	    //创建InputConnection</span><br><span class="line">        mBatchEditNestCount = 0;</span><br><span class="line">        mInputConnection = new AutocompleteInputConnection();</span><br><span class="line">        mInputConnection.setTarget(super.onCreateInputConnection(outAttrs));</span><br><span class="line">        return mInputConnection;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>Have Fun :)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Chrome/" rel="tag"># Chrome</a>
+          
+            <a href="/tags/Gboard/" rel="tag"># Gboard</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/02/18.02总结/" rel="next" title="18.02总结">
+                <i class="fa fa-chevron-left"></i> 18.02总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/09/Android View焦点输出/" rel="prev" title="Android View焦点获取">
+                Android View焦点获取 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">文全</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mxlwq" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liwenquantop@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chrome地址栏地址自动补全功能调研和更新"><span class="nav-number">1.</span> <span class="nav-text">Chrome地址栏地址自动补全功能调研和更新</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome地址栏地址自动补全功能预览"><span class="nav-number">1.1.</span> <span class="nav-text">Chrome地址栏地址自动补全功能预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最初版本情况"><span class="nav-number">1.2.</span> <span class="nav-text">最初版本情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome最新版代码"><span class="nav-number">1.3.</span> <span class="nav-text">Chrome最新版代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现效果"><span class="nav-number">1.3.1.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现代码"><span class="nav-number">1.3.2.</span> <span class="nav-text">实现代码</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">文全</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></p></div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
