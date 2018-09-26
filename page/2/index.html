@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -50,42 +62,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Android, Blog" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wenquan&#39;s Note">
-<meta property="og:url" content="http://liwenquan.top/page/2/index.html">
-<meta property="og:site_name" content="Wenquan&#39;s Note">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wenquan&#39;s Note">
 
 
 
@@ -94,15 +89,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
+    version: '6.4.1',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    fastclick: ,
+    lazyload: ,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -114,12 +107,33 @@
 </script>
 
 
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Wenquan&#39;s Note">
+<meta property="og:url" content="http://liwenquan.top/page/2/index.html">
+<meta property="og:site_name" content="Wenquan&#39;s Note">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wenquan&#39;s Note">
+
+
+
+
+
 
   <link rel="canonical" href="http://liwenquan.top/page/2/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Wenquan's Note</title>
   
@@ -130,6 +144,34 @@
 
 
 
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -150,19 +192,17 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Wenquan's Note</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -170,66 +210,56 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">首页</a>
+  </li>
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">关于</a>
+  </li>
 
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
+            搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -260,12 +290,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -278,6 +316,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -286,7 +326,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/23种设计模式备忘和理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -302,11 +342,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/23种设计模式备忘和理解/" itemprop="url">23种设计模式备忘和理解——1.分类</a></h1>
+                <a class="post-title-link" href="/2018/03/09/23种设计模式备忘和理解/" itemprop="url">
+                  23种设计模式备忘和理解——1.分类
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -314,11 +364,12 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T14:50:47+08:00">
-                2018-03-09
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建于：2018-03-09 14:50:47" itemprop="dateCreated datePublished" datetime="2018-03-09T14:50:47+08:00">2018-03-09</time>
             
 
             
@@ -336,11 +387,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/设计模式/" itemprop="url" rel="index"><span itemprop="name">设计模式</span></a></span>
 
                 
                 
@@ -356,6 +403,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/09/23种设计模式备忘和理解/#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="2018/03/09/23种设计模式备忘和理解/" itemprop="commentCount"></span>
                 </a>
@@ -421,6 +469,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -459,6 +510,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -467,7 +520,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Android View焦点输出/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -483,11 +536,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/Android View焦点输出/" itemprop="url">Android View焦点获取</a></h1>
+                <a class="post-title-link" href="/2018/03/09/Android View焦点输出/" itemprop="url">
+                  Android View焦点获取
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -495,11 +558,12 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">
-                2018-03-09
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建于：2018-03-09 14:42:52" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">2018-03-09</time>
             
 
             
@@ -517,11 +581,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/移动开发/" itemprop="url" rel="index"><span itemprop="name">移动开发</span></a></span>
 
                 
                 
@@ -537,6 +597,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/09/Android View焦点输出/#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="2018/03/09/Android View焦点输出/" itemprop="commentCount"></span>
                 </a>
@@ -582,6 +643,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -620,6 +684,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -628,7 +694,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -644,11 +710,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/" itemprop="url">Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起</a></h1>
+                <a class="post-title-link" href="/2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/" itemprop="url">
+                  Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -656,11 +732,12 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">
-                2018-03-09
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建于：2018-03-09 14:42:52" itemprop="dateCreated datePublished" datetime="2018-03-09T14:42:52+08:00">2018-03-09</time>
             
 
             
@@ -678,11 +755,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">Ubuntu</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a></span>
 
                 
                 
@@ -698,6 +771,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="2018/03/09/Ubuntu状态栏和侧边栏消失解决方案——删除iBus引起/" itemprop="commentCount"></span>
                 </a>
@@ -744,6 +818,9 @@
         
       
     </div>
+
+    
+
     
     
     
@@ -782,6 +859,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -790,7 +869,7 @@
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -806,11 +885,21 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/" itemprop="url">Chrome for Android AutoComplete地址栏地址自动补全功能调研和更新</a></h1>
+                <a class="post-title-link" href="/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/" itemprop="url">
+                  Chrome for Android AutoComplete地址栏地址自动补全功能调研和更新
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -818,11 +907,12 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T14:39:58+08:00">
-                2018-03-09
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建于：2018-03-09 14:39:58" itemprop="dateCreated datePublished" datetime="2018-03-09T14:39:58+08:00">2018-03-09</time>
             
 
             
@@ -840,11 +930,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动开发/" itemprop="url" rel="index">
-                    <span itemprop="name">移动开发</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/移动开发/" itemprop="url" rel="index"><span itemprop="name">移动开发</span></a></span>
 
                 
                 
@@ -860,6 +946,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="2018/03/09/Chrome-for-Android-AutoComplete地址栏地址自动补全功能调研和更新/" itemprop="commentCount"></span>
                 </a>
@@ -908,6 +995,9 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
         
       
     </div>
+
+    
+
     
     
     
@@ -946,6 +1036,8 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -954,7 +1046,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/02/18.02总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -970,11 +1062,21 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/02/18.02总结/" itemprop="url">18.02总结</a></h1>
+                <a class="post-title-link" href="/2018/03/02/18.02总结/" itemprop="url">
+                  18.02总结
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -982,11 +1084,12 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">
-                2018-03-02
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建于：2018-03-02 10:01:33" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">2018-03-02</time>
             
 
             
@@ -1004,11 +1107,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/总结/" itemprop="url" rel="index">
-                    <span itemprop="name">总结</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/" itemprop="url" rel="index"><span itemprop="name">总结</span></a></span>
 
                 
                 
@@ -1024,6 +1123,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/02/18.02总结/#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="2018/03/02/18.02总结/" itemprop="commentCount"></span>
                 </a>
@@ -1077,6 +1177,9 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
         
       
     </div>
+
+    
+
     
     
     
@@ -1115,6 +1218,8 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1123,7 +1228,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
     <link itemprop="mainEntityOfPage" href="http://liwenquan.top/2018/03/02/Hexo同时部署coding和github/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wenquan">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -1139,11 +1244,21 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/02/Hexo同时部署coding和github/" itemprop="url">Hexo同时部署coding和github</a></h1>
+                <a class="post-title-link" href="/2018/03/02/Hexo同时部署coding和github/" itemprop="url">
+                  Hexo同时部署coding和github
+                </a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1151,11 +1266,12 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">
-                2018-03-02
-              </time>
-            
 
+              
+                
+              
+
+              <time title="创建于：2018-03-02 10:01:33" itemprop="dateCreated datePublished" datetime="2018-03-02T10:01:33+08:00">2018-03-02</time>
             
 
             
@@ -1173,11 +1289,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
 
                 
                 
@@ -1193,6 +1305,7 @@ Gboard输入法打开了【文字更正】功能里面的现实建议栏补全�
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/02/Hexo同时部署coding和github/#comments" itemprop="discussionUrl">
+                
                   <span class="post-comments-count disqus-comment-count"
                         data-disqus-identifier="2018/03/02/Hexo同时部署coding和github/" itemprop="commentCount"></span>
                 </a>
@@ -1239,6 +1352,9 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
         
       
     </div>
+
+    
+
     
     
     
@@ -1273,15 +1389,12 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1308,64 +1421,27 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Wenquan</p>
+              <p class="site-author-name" itemprop="name">博主</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">分类</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
-            
-
-          </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/mxlwq" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:liwenquantop@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/mxlwq" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:liwenquantop@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
             </div>
           
 
@@ -1375,6 +1451,9 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
           
           
 
+          
+            
+          
           
 
         </div>
@@ -1394,14 +1473,18 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Wenquan</span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
 
   
 </div>
+
+
 
 
 
@@ -1412,29 +1495,16 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
   <div class="footer-custom"><p>Hosted by <a href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a></p></div>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv">
-      您是第
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      位
-    </span>
-  
 
-  
-    <span class="site-pv">
-      共访问
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      次
-    </span>
   
 </div>
+
 
 
 
@@ -1455,7 +1525,10 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -1474,7 +1547,13 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
 
 
+
+
+
   
+
+
+
 
 
 
@@ -1490,16 +1569,6 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -1521,45 +1590,29 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
 
 
 
   
-
-
   
 
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
+  
 
   
 
 
-
-
-	
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
 
 
 
+  
+
+  
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+  
 
   
 
@@ -1568,8 +1621,6 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
 
 
   
-
-
 
 
 
@@ -1631,6 +1682,8 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1664,6 +1717,7 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -1910,6 +1964,12 @@ ping ×××.coding.me和×××.github.io获取到国内coding服务器ip地址�
   
 
   
+
+  
+  
+
+  
+
   
 
   
